@@ -31,10 +31,15 @@ function showProducts(products) {
     markup += `
       <article class="produkt_kort">
         <div class="billede_wrap">
-          <img src="${product.thumbnail}" alt="${product.title}" />
+          <img
+            class="linkable"
+            src="${product.thumbnail}"
+            alt="${product.title}"
+            onclick="window.location.href='product.html'"
+          />
         </div>
-        <h3>${product.title}</h3>
-        <p class="pris">${product.price} kr</p>
+        <h3 class="linkable" onclick="window.location.href='product.html'">${product.title}</h3>
+        <p class="pris linkable" onclick="window.location.href='product.html'">${product.price} kr</p>
       </article>
     `;
   });
