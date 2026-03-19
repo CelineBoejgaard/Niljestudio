@@ -1,0 +1,273 @@
+/* HERO */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.hero-text {
+  position: relative;
+  color: white;
+  font-size: 40px;
+  letter-spacing: 6px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  z-index: 3;
+}
+
+/* HEADER / BURGER (separeret fra hero) */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20; /* højere end hero */
+  background: rgba(
+    255,
+    255,
+    255,
+    0.95
+  ); /* valgfri baggrund, så menuen ikke er gennemsigtig */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* LOGO */
+.logo {
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 3px;
+  z-index: 21;
+  pointer-events: none;
+}
+
+.logo small {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+/* BURGER */
+.burger {
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  width: 30px;
+  z-index: 22;
+}
+
+.burger span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: black;
+  border-radius: 2px;
+}
+
+/* SIDE MENU */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  padding-top: 80px;
+  transition: left 0.3s ease;
+  z-index: 25; /* ligger over header og hero */
+}
+
+.side-menu a {
+  display: block;
+  padding: 15px 25px;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+}
+
+.side-menu a:hover {
+  background: #f5f5f5;
+}
+
+.side-menu.active {
+  left: 0;
+}
+
+/* MAND og DAME */
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.category-section > div {
+  margin: 5px;
+  width: 45%;
+}
+
+.category-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+section,
+div {
+  position: relative;
+}
+
+h2,
+h3 {
+  position: absolute;
+  left: 20px;
+  color: white;
+}
+
+h2 {
+  bottom: 60px;
+}
+
+h3 {
+  bottom: 20px;
+}
+
+@media screen and (max-width: 800px) {
+  img {
+  }
+}
+
+img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Grid container */
+.bags-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  width: 100%;
+  padding: 16px;
+}
+
+/* Kort styling */
+.bag-card {
+  text-align: center;
+  background-color: #f6f5f3;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.bag-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Mobil tilpasning */
+@media (max-width: 600px) {
+  .bags-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .bags-grid > .bag-card:nth-child(n + 4) {
+    display: none;
+  }
+}
+/* FOOTER (SCOPED) */
+.footer-wrapper {
+  margin-top: 40px;
+  padding: 40px;
+  background: #f6f5f3;
+  font-family: "Manrope", sans-serif;
+}
+
+/* MOBIL */
+.footer-wrapper .footermobil {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+}
+
+.footer-wrapper .footermobil h1 {
+  font-family: "Playfair Display", serif;
+}
+
+.footer-wrapper .footermobil button {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #000;
+  background: white;
+}
+
+/* DESKTOP */
+.footer-wrapper .footercomputer {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .footer-wrapper .footercomputer {
+    display: block;
+  }
+
+  .footer-wrapper .footermobil {
+    display: none;
+  }
+
+  .footer-wrapper .grid_1-44 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .footer-wrapper .flexdirection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-wrapper a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+  }
+}
