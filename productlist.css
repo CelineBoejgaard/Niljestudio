@@ -1,0 +1,48 @@
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.galleri {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 kolonner */
+  gap: 1rem;
+}
+
+/* Desktop */
+@media (min-width: 1300px) {
+  .galleri {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.produkt_kort {
+  background: #c1b2a02f;
+  padding: 1rem;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.produkt_kort img {
+  object-fit: contain;
+}
+
+.produkt_kort h3 {
+  font-size: 0.9rem;
+  margin: 0.5rem 0 0.2rem;
+}
+
+.pris {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.galleri article:nth-child(7) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.galleri .big-item {
+  grid-row: span 2;
+  grid-column: 3 / 5;
+}
