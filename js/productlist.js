@@ -1,4 +1,5 @@
 const container = document.querySelector(".galleri");
+const filterButtons = document.querySelectorAll(".filter-btn");
 
 const endpoint1 = "https://dummyjson.com/products/category/womens-dresses";
 const endpoint2 = "https://dummyjson.com/products/category/womens-shoes";
@@ -6,28 +7,64 @@ const endpoint3 = "https://dummyjson.com/products/category/tops";
 const endpoint4 = "https://dummyjson.com/products/category/womens-bags";
 
 let allData = [];
-let udsnit;
 
-function showProducts(json) {
+function getCategory(product) {
+  if (product.category === "womens-bags") {
+    return "bags";
+  }
+
+  if (product.category === "womens-shoes") {
+    return "shoes";
+  }
+
+  if (product.category === "womens-dresses" || product.category === "tops") {
+    return "clothing";
+  }
+
+  return "accessories";
+}
+
+function showProducts(products) {
   let markup = "";
 
-  json.forEach((product, index) => {
-    if (product.name === "Taske") {
-      // gør ingenting
-    } else {
-      markup += `
-        <article class="produkt_kort">
-          <div class="billede_wrap">
-            <img src="${product.thumbnail}" alt="${product.title}" />
-          </div>
-          <h3>${product.title}</h3>
-          <p class="pris">${product.price} kr</p>
-        </article>
-      `;
-    }
+  products.forEach((product) => {
+    markup += `
+      <article class="produkt_kort">
+        <div class="billede_wrap">
+          <img src="${product.thumbnail}" alt="${product.title}" />
+        </div>
+        <h3>${product.title}</h3>
+        <p class="pris">${product.price} kr</p>
+      </article>
+    `;
   });
 
   container.innerHTML = markup;
+}
+
+function filterProducts(filter) {
+  if (filter === "all") {
+    showProducts(allData);
+    return;
+  }
+
+  const filteredProducts = allData.filter((product) => {
+    return getCategory(product) === filter;
+  });
+
+  showProducts(filteredProducts);
+}
+
+function setupFilters() {
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      const filter = button.dataset.filter;
+      filterProducts(filter);
+    });
+  });
 }
 
 function getData() {
@@ -45,8 +82,8 @@ function getData() {
         ...data[3].products,
       ];
 
-      udsnit = allData;
-      showProducts(udsnit);
+      showProducts(allData);
+      setupFilters();
     })
     .catch((error) => {
       console.error("Der skete en fejl:", error);
